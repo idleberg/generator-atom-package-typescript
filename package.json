@@ -5,8 +5,7 @@
   "files": [
     "generators"
   ],
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [
     "yeoman-generator"
   ],
