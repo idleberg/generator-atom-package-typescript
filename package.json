@@ -1,7 +1,7 @@
 {
   "name": "generator-atom-package-typescript",
   "version": "0.1.0",
-  "description": "",
+  "description": "Generator for Atom packages written TypeScript",
   "files": [
     "generators"
   ],
@@ -9,6 +9,10 @@
   "keywords": [
     "yeoman-generator"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idleberg/generator-atom-package-typescript"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
