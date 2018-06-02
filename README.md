@@ -32,6 +32,10 @@ yo atom-package-typescript
 
 *“That's all Folks!”*
 
+## Related
+
+- [generator-atom-package-coffeescript](https://www.npmjs.org/package/generator-atom-package-coffeescript)
+
 ## License
 
 This work is licensed under the [MIT License](https://opensource.org/licenses/MIT)
