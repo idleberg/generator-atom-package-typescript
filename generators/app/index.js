@@ -111,6 +111,27 @@ module.exports = class extends Generator {
         store: true
       },
       {
+        type: 'list',
+        name: 'linterHook',
+        message: 'Linter hook',
+        default: 'precommit',
+        choices: [
+          {
+            name: 'precommit',
+            value: 'precommit',
+          },
+          {
+            name: 'prepush',
+            value: 'prepush',
+          },
+          {
+            name: 'prepublishOnly',
+            value: 'prepublishOnly',
+          }
+        ],
+        store: true
+      },
+      {
         type: 'confirm',
         name: 'initGit',
         message: 'Initialize Git repository?',
