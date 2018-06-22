@@ -6,7 +6,7 @@
 
 ## Description
 
-A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for Atom packages written in any version TypeScript.
+A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for Atom packages written in any version of TypeScript.
 
 **Features**
 
