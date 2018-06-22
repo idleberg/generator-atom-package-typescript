@@ -7,7 +7,10 @@
   ],
   "scripts": {},
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "atom",
+    "atom package",
+    "typescript"
   ],
   "repository": {
     "type": "git",
