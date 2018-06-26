@@ -1,8 +1,8 @@
 # <%= pkg.name %>
 
-[![apm](https://img.shields.io/apm/l/pkg.name.svg?style=flat-square)](https://atom.io/packages/pkg.name)
-[![apm](https://img.shields.io/apm/v/pkg.name.svg?style=flat-square)](https://atom.io/packages/pkg.name)
-[![apm](https://img.shields.io/apm/dm/pkg.name.svg?style=flat-square)](https://atom.io/packages/pkg.name)<% if (pkg.addConfig.includes('circleCI')) { %>
+[![apm](https://img.shields.io/apm/l/<%= pkg.name %>.svg?style=flat-square)](https://atom.io/packages/<%= pkg.name %>)
+[![apm](https://img.shields.io/apm/v/<%= pkg.name %>.svg?style=flat-square)](https://atom.io/packages/<%= pkg.name %>)
+[![apm](https://img.shields.io/apm/dm/<%= pkg.name %>.svg?style=flat-square)](https://atom.io/packages/<%= pkg.name %>)<% if (pkg.addConfig.includes('circleCI')) { %>
 [![CircleCI](https://img.shields.io/circleci/project/<%= pkg.author %>/atom-<%= pkg.name %>.svg?style=flat-square)](https://circleci.com/gh/<%= pkg.author %>/atom-<%= pkg.name %>)<% } %><% if (pkg.addConfig.includes('travisCI')) { %>
 [![Travis](https://img.shields.io/travis/<%= pkg.author %>/atom-<%= pkg.name %>.svg?style=flat-square)](https://travis-ci.org/<%= pkg.author %>/atom-<%= pkg.name %>)<% } %>
 <% if (pkg.description) { %>
@@ -38,6 +38,12 @@ Clone the repository as `<%= pkg.name %>`:
 
 ```bash
 $ git clone https://github.com/<%= pkg.author %>/atom-<%= pkg.name %> <%= pkg.name %>
+```
+
+Install dependencies:
+
+```bash
+cd <%= pkg.name %> && npm install
 ```
 
 ## Usage
