@@ -4,7 +4,7 @@ module.exports = {
   config: {},
   subscriptions: null,
 
-  activate(state: Object): void {
+  activate(): void {
     // Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     this.subscriptions = new CompositeDisposable;
 
