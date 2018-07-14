@@ -35,6 +35,7 @@ yo atom-package-typescript
 ## Related
 
 - [generator-atom-package-coffeescript](https://www.npmjs.org/package/generator-atom-package-coffeescript)
+- [generator-atom-package-webpack](https://www.npmjs.org/package/generator-atom-package-webpack)
 
 ## License
 
