@@ -248,7 +248,7 @@ module.exports = class extends Generator {
 
       // Install latest versions of dependencies
       this.yarnInstall(['@types/atom', '@types/node', 'typescript']);
-      this.yarnInstall(['tslint', 'husky'], { 'dev': true });
+      this.yarnInstall(['tslint', 'husky'], { 'dev': true, ignoreScripts: true });
 
       // Initialize git repository
       if (props.initGit) {
