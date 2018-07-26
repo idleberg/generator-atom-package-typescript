@@ -5,9 +5,8 @@
     "description": "<%= pkg.description %>",
     "scripts": {
         "build": "tsc --project .",
-        "lint": "tslint --project .",
-        "<%= pkg.linterHook %>": "npm run lint",
-        "postinstall": "npm run build",
+        "lint": "tslint --project .",<% pkg.scripts.forEach( script => {  %>
+        <%- script %>,<% }) %>
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
@@ -25,6 +24,6 @@
         "<%= pkg.name %>:hello-world"
       ]
     },<% } %>
-    "devDependencies": {
-    }
+    "dependencies": {},
+    "devDependencies": {}
 }

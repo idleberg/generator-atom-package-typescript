@@ -92,6 +92,44 @@ module.exports = class extends Generator {
         default: true
       },
       {
+        type: 'list',
+        name: 'buildScript',
+        message: 'Build Script',
+        default: 'prepublishOnly',
+        choices: [
+          {
+            name: 'postinstall',
+            value: 'postinstall',
+          },
+          {
+            name: 'prepublishOnly',
+            value: 'prepublishOnly',
+          }
+        ],
+        store: true
+      },
+      {
+        type: 'list',
+        name: 'linterHook',
+        message: 'Linter Hook',
+        default: 'precommit',
+        choices: [
+          {
+            name: 'precommit',
+            value: 'precommit',
+          },
+          {
+            name: 'prepush',
+            value: 'prepush',
+          },
+          {
+            name: 'prepublishOnly',
+            value: 'prepublishOnly',
+          }
+        ],
+        store: true
+      },
+      {
         type: 'checkbox',
         name: 'addConfig',
         message: 'Add configuration',
@@ -106,27 +144,6 @@ module.exports = class extends Generator {
             name: 'Travis CI',
             value: 'travisCI',
             checked: false
-          }
-        ],
-        store: true
-      },
-      {
-        type: 'list',
-        name: 'linterHook',
-        message: 'Linter hook',
-        default: 'precommit',
-        choices: [
-          {
-            name: 'precommit',
-            value: 'precommit',
-          },
-          {
-            name: 'prepush',
-            value: 'prepush',
-          },
-          {
-            name: 'prepublishOnly',
-            value: 'prepublishOnly',
           }
         ],
         store: true
@@ -203,6 +220,17 @@ module.exports = class extends Generator {
         }
       );
 
+      if (props.buildScript === props.linterHook) {
+        props.scripts = [
+          '"prepublishOnly": "npm run lint && npm run build"'
+        ];
+      } else {
+        props.scripts = [
+          `"${props.buildScript}": "npm run build"`,
+          `"${props.linterHook}": "npm run lint"`
+        ];
+      }
+
       this.fs.copyTpl(
         this.templatePath('package.json.ejs'),
         this.destinationPath('package.json'),
@@ -247,8 +275,15 @@ module.exports = class extends Generator {
       );
 
       // Install latest versions of dependencies
-      this.yarnInstall(['@types/atom', '@types/node', 'typescript']);
-      this.yarnInstall(['tslint', 'husky'], { 'dev': true, ignoreScripts: true });
+      const dependencies = ['@types/atom', '@types/node', 'typescript'];
+      let devDependencies =['tslint', 'husky'];
+
+      if (props.buildScript === 'prepublishOnly') {
+        devDependencies = devDependencies.concat(dependencies)
+      } else {
+        this.yarnInstall(dependencies, { ignoreScripts: true });
+      }
+      this.yarnInstall(devDependencies, { 'dev': true });
 
       // Initialize git repository
       if (props.initGit) {
