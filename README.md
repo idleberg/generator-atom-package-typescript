@@ -1,9 +1,9 @@
 # generator-atom-package-typescript
 
-[![npm](https://img.shields.io/npm/l/generator-atom-package-typescript.svg?style=flat-square)](https://www.npmjs.org/package/generator-atom-package-typescript)
-[![npm](https://img.shields.io/npm/v/generator-atom-package-typescript.svg?style=flat-square)](https://www.npmjs.org/package/generator-atom-package-typescript)
-[![CircleCI](https://img.shields.io/circleci/project/idleberg/generator-atom-package-typescript.svg?style=flat-square)](https://circleci.com/gh/idleberg/generator-atom-package-typescript)
-[![David](https://img.shields.io/david/idleberg/generator-atom-package-typescript.svg?style=flat-square)](https://david-dm.org/idleberg/generator-atom-package-typescript)
+[![npm](https://flat.badgen.net/npm/license/generator-atom-package-typescript)](https://www.npmjs.org/package/generator-atom-package-typescript)
+[![npm](https://flat.badgen.net/npm/v/generator-atom-package-typescript)](https://www.npmjs.org/package/generator-atom-package-typescript)
+[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/generator-atom-package-typescript)](https://circleci.com/gh/idleberg/generator-atom-package-typescript)
+[![David](https://flat.badgen.net/david/dep/idleberg/generator-atom-package-typescript)](https://david-dm.org/idleberg/generator-atom-package-typescript)
 
 ## Description
 
