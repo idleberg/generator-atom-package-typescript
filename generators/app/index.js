@@ -26,6 +26,7 @@ module.exports = class extends Generator {
         name: 'name',
         message: 'What do you want to name your package?',
         default: slugify(this.appname),
+        store: true,
         validate: (str) => {
           return !str.startsWith('atom-') ? true : 'Your package name shouldn\'t be prefixed with "atom-"' ;
         }
@@ -34,6 +35,7 @@ module.exports = class extends Generator {
         name: 'description',
         message: 'What is your package description?',
         default: '',
+        store: true,
         validate: (str) => {
           return str.length > 0 ? true : 'Please provide a short description for your package' ;
         }
@@ -50,13 +52,14 @@ module.exports = class extends Generator {
         name: 'license',
         message: 'Choose license',
         default: 'MIT',
+        store: true,
         choices: licenseChoices,
-        store: true
       },
       {
         type: 'checkbox',
         name: 'features',
         message: 'Package Features',
+        store: true,
         choices: [
           {
             name: 'Grammars',
@@ -96,6 +99,7 @@ module.exports = class extends Generator {
         name: 'buildScript',
         message: 'Build Script',
         default: 'prepublishOnly',
+        store: true,
         choices: [
           {
             name: 'postinstall',
@@ -105,14 +109,14 @@ module.exports = class extends Generator {
             name: 'prepublishOnly',
             value: 'prepublishOnly',
           }
-        ],
-        store: true
+        ]
       },
       {
         type: 'list',
         name: 'linterHook',
         message: 'Linter Hook',
         default: 'precommit',
+        store: true,
         choices: [
           {
             name: 'precommit',
@@ -126,14 +130,13 @@ module.exports = class extends Generator {
             name: 'prepublishOnly',
             value: 'prepublishOnly',
           }
-        ],
-        store: true
+        ]
       },
       {
         type: 'checkbox',
         name: 'addConfig',
         message: 'Add configuration',
-        default: 'MIT',
+        store: true,
         choices: [
           {
             name: 'Circle CI',
@@ -145,8 +148,7 @@ module.exports = class extends Generator {
             value: 'travisCI',
             checked: false
           }
-        ],
-        store: true
+        ]
       },
       {
         type: 'confirm',
