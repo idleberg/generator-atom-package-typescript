@@ -1,10 +1,10 @@
 # <%= pkg.name %>
 
-[![apm](https://img.shields.io/apm/l/<%= pkg.name %>.svg?style=flat-square)](https://atom.io/packages/<%= pkg.name %>)
-[![apm](https://img.shields.io/apm/v/<%= pkg.name %>.svg?style=flat-square)](https://atom.io/packages/<%= pkg.name %>)
-[![apm](https://img.shields.io/apm/dm/<%= pkg.name %>.svg?style=flat-square)](https://atom.io/packages/<%= pkg.name %>)<% if (pkg.addConfig.includes('circleCI')) { %>
-[![CircleCI](https://img.shields.io/circleci/project/<%= pkg.author %>/atom-<%= pkg.name %>.svg?style=flat-square)](https://circleci.com/gh/<%= pkg.author %>/atom-<%= pkg.name %>)<% } %><% if (pkg.addConfig.includes('travisCI')) { %>
-[![Travis](https://img.shields.io/travis/<%= pkg.author %>/atom-<%= pkg.name %>.svg?style=flat-square)](https://travis-ci.org/<%= pkg.author %>/atom-<%= pkg.name %>)<% } %>
+[![apm](https://flat.badgen.net/apm/license/<%= pkg.name %>)](https://atom.io/packages/<%= pkg.name %>)
+[![apm](https://flat.badgen.net/apm/v/<%= pkg.name %>)](https://atom.io/packages/<%= pkg.name %>)
+[![apm](https://flat.badgen.net/apm/dl/<%= pkg.name %>)](https://atom.io/packages/<%= pkg.name %>)<% if (pkg.addConfig.includes('circleCI')) { %>
+[![CircleCI](https://flat.badgen.net/circleci/github/<%= pkg.author %>/atom-<%= pkg.name %>)](https://circleci.com/gh/<%= pkg.author %>/atom-<%= pkg.name %>)<% } %><% if (pkg.addConfig.includes('travisCI')) { %>
+[![Travis](https://flat.badgen.net/travis/<%= pkg.author %>/atom-<%= pkg.name %>)](https://travis-ci.org/<%= pkg.author %>/atom-<%= pkg.name %>)<% } %>
 <% if (pkg.description) { %>
 # Description
 
