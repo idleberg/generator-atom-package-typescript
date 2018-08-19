@@ -25,7 +25,7 @@ yarn global add generator-atom-package-typescript || npm i generator-atom-packag
 
 ## Usage
 
-Run the generator and follow its instructions
+Run the generator and follow its instructions. Use `--help`to list available flags.
 
 ```sh
 yo atom-package-typescript
