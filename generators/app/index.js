@@ -20,6 +20,17 @@ const licenseChoices = spdxCodes.map(obj =>{
 updateNotifier({ pkg: pkg }).notify();
 
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+
+    // Use long flags to discourage usage
+    this.option('allow-atom-prefix', { desc: `Allows naming the package with "atom-" prefix`, default: false });
+    this.option('allow-empty-description', { desc: `Allows empty packag description`, default: false });
+
+    this.allowAtomPrefix = (this.options.allowAtomPrefix ? true : false);
+    this.allowEmptyDescription = (this.options.allowEmptyDescription ? true : false);
+  }
+
   inquirer() {
     return this.prompt([
       {
@@ -28,7 +39,7 @@ module.exports = class extends Generator {
         default: slugify(this.appname),
         store: true,
         validate: (str) => {
-          return !str.startsWith('atom-') ? true : 'Your package name shouldn\'t be prefixed with "atom-"' ;
+          return (str.startsWith('atom-') && this.allowAtomPrefix === false) ? 'Your package name shouldn\'t be prefixed with "atom-"' : true;
         }
       },
       {
@@ -37,7 +48,7 @@ module.exports = class extends Generator {
         default: '',
         store: true,
         validate: (str) => {
-          return str.length > 0 ? true : 'Please provide a short description for your package' ;
+          return (str.length === 0 && this.allowEmptyDescription === false) ? 'Please provide a short description for your package' : true;
         }
       },
       {
