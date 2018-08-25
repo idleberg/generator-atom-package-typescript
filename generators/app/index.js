@@ -180,7 +180,7 @@ module.exports = class extends Generator {
 
       if (props.features.indexOf('keymaps') !== -1) {
         this.fs.copyTpl(
-          this.templatePath('keymaps/keymap.json.ejs'),
+          this.templatePath('keymaps/keymap.json.hbs'),
           this.destinationPath(`keymaps/${props.name}.json`),
           {
             pkg: props
@@ -190,7 +190,7 @@ module.exports = class extends Generator {
 
       if (props.features.indexOf('menus') !== -1) {
         this.fs.copyTpl(
-          this.templatePath('menus/menu.json.ejs'),
+          this.templatePath('menus/menu.json.hbs'),
           this.destinationPath(`menus/${props.name}.json`),
           {
             pkg: props
@@ -200,7 +200,7 @@ module.exports = class extends Generator {
 
       if (props.features.indexOf('styles') !== -1) {
         this.fs.copyTpl(
-          this.templatePath('styles/style.less.ejs'),
+          this.templatePath('styles/style.less.hbs'),
           this.destinationPath(`styles/${props.name}.less`),
           {
             pkg: props
@@ -210,7 +210,7 @@ module.exports = class extends Generator {
 
       mkdirp('src');
       this.fs.copyTpl(
-        this.templatePath('src/index.ts.ejs'),
+        this.templatePath('src/index.ts.hbs'),
         this.destinationPath(`src/${props.name}.ts`),
         {
           pkg: props
@@ -218,7 +218,7 @@ module.exports = class extends Generator {
       );
 
      this.fs.copyTpl(
-        this.templatePath('README.md.ejs'),
+        this.templatePath('README.md.hbs'),
         this.destinationPath('README.md'),
         {
           pkg: props
@@ -226,7 +226,7 @@ module.exports = class extends Generator {
       );
 
       this.fs.copyTpl(
-        this.templatePath('LICENSE.ejs'),
+        this.templatePath('LICENSE.hbs'),
         this.destinationPath('LICENSE'),
         {
           licenseText: props.licenseText
@@ -245,7 +245,7 @@ module.exports = class extends Generator {
       }
 
       this.fs.copyTpl(
-        this.templatePath('package.json.ejs'),
+        this.templatePath('package.json.hbs'),
         this.destinationPath('package.json'),
         {
           pkg: props
