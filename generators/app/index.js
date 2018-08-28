@@ -5,13 +5,14 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const slugify = require('@sindresorhus/slugify');
 const spdxLicenseList = require('spdx-license-list/full');
+const terminalLink = require('terminal-link');
 const updateNotifier = require('update-notifier');
 
 // Create array of license choices
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
 const licenseChoices = spdxCodes.map(obj =>{
    const licenses = {};
-   licenses['value'] = obj;
+   licenses['value'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
 
    return licenses;
 })
@@ -150,12 +151,12 @@ module.exports = class extends Generator {
         store: true,
         choices: [
           {
-            name: 'Circle CI',
+            name: terminalLink('Circle CI', 'https://circleci.com/'),
             value: 'circleCI',
             checked: false
           },
           {
-            name: 'Travis CI',
+            name: terminalLink('Travis CI', 'https://travis-ci.org/'),
             value: 'travisCI',
             checked: false
           }
