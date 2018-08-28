@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "command": "<%= pkg.name %>:hello-world",
+        "label": "Hello World"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "<%= pkg.name %>",
+          "submenu": [
+            {
+              "command": "<%= pkg.name %>:hello-world",
+              "label": "Hello World"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
