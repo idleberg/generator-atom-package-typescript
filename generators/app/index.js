@@ -12,7 +12,8 @@ const updateNotifier = require('update-notifier');
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
 const licenseChoices = spdxCodes.map(obj =>{
    const licenses = {};
-   licenses['value'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
+   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
+   licenses['value'] = obj;
 
    return licenses;
 })
@@ -172,7 +173,8 @@ module.exports = class extends Generator {
 
       props.licenseURL = spdxLicenseList[props.license].url;
       props.licenseName = spdxLicenseList[props.license].name;
-      props.licenseText = spdxLicenseList[props.license].licenseText.replace(/\n/g, '\n\n');
+      props.licenseText = spdxLicenseList[props.license].licenseText.replace(/\n{3,}/g, '\n\n');
+      props.repositoryName = (props.name.startsWith('atom-')) ? props.name : `atom-${props.name}`;
 
       // Copying files
       props.features.forEach( feature => {
