@@ -42,7 +42,13 @@ module.exports = class extends Generator {
         default: slugify(this.appname),
         store: true,
         validate: (str) => {
-          return (str.startsWith('atom-') && this.allowAtomPrefix === false) ? 'Your package name shouldn\'t be prefixed with "atom-"' : true;
+          if (str.startsWith('atom-') && this.allowAtomPrefix === false) {
+            return 'Your package name shouldn\'t be prefixed with "atom-"';
+          } else if (str.length > 241) {
+            return 'The name must be less than or equal to 214 characters';
+          }
+
+          return true;
         }
       },
       {
