@@ -14,6 +14,7 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for Atom
 - adds any [SPDX](https://spdx.org/licenses/) license
 - adds [CircleCI](https://circleci.com) configuration
 - adds [Travis CI](https://travis-ci.org/) configuration
+- adds Atom package dependencies
 
 ## Installation
 

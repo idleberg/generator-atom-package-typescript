@@ -1,6 +1,7 @@
 const Generator = require('yeoman-generator');
-const pkg = require('../../package.json');
+const meta = require('../../package.json');
 
+const axios = require('axios');
 const fs = require('fs');
 const gitUserName = require('git-user-name');
 const mkdirp = require('mkdirp');
@@ -20,7 +21,7 @@ const licenseChoices = spdxCodes.map(obj =>{
 })
 
 // Is there a newer version of this generator?
-updateNotifier({ pkg: pkg }).notify();
+updateNotifier({ pkg: meta }).notify();
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -116,6 +117,39 @@ module.exports = class extends Generator {
         default: true
       },
       {
+        type: 'confirm',
+        name: 'atomDependenciesQuestion',
+        message: 'Depend on other Atom packages?',
+        default: false,
+        store: true
+      },
+      {
+        name: 'atomDependencies',
+        message: 'Specify Atom packages (comma-separated)',
+        store: true,
+        when: answers => (answers.atomDependenciesQuestion) ? true : false,
+        validate: async str => {
+          if (str.trim().length === 0) {
+            return 'You need to specify at least one package';
+          }
+
+          const packages = str.split(',');
+          const promises = [];
+
+          for (var pkg of packages) {
+            promises.push(axios.get(`https://atom.io/api/packages/${pkg}`));
+          }
+
+          try {
+            await Promise.all(promises); // responses will be an array
+          } catch (err) {
+            return `The package '${pkg}' could not be found`;
+          }
+
+          return true;
+        }
+      },
+      {
         type: 'list',
         name: 'buildScript',
         message: 'Build Script',
@@ -183,6 +217,11 @@ module.exports = class extends Generator {
       props.licenseName = spdxLicenseList[props.license].name;
       props.licenseText = spdxLicenseList[props.license].licenseText.replace(/\n{3,}/g, '\n\n');
       props.repositoryName = (props.name.startsWith('atom-')) ? props.name : `atom-${props.name}`;
+
+      if (typeof props.atomDependencies !== 'undefined') {
+        props.atomDependencies = props.atomDependencies.split(',');
+        props.atomDependencies.map(dependency => dependency.trim());
+      }
 
       // Copying files
       props.features.forEach( feature => {
@@ -304,7 +343,13 @@ module.exports = class extends Generator {
 
       if (props.buildScript === 'prepublishOnly') {
         devDependencies = devDependencies.concat(dependencies)
+        if (typeof props.atomDependencies !== 'undefined' && props.atomDependencies.length > 0) {
+          this.yarnInstall(['atom-package-deps'], { ignoreScripts: true });
+        }
       } else {
+        if (typeof props.atomDependencies !== 'undefined' && props.atomDependencies.length > 0) {
+          dependencies.push('atom-package-deps');
+        }
         this.yarnInstall(dependencies, { ignoreScripts: true });
       }
       this.yarnInstall(devDependencies, { 'dev': true });

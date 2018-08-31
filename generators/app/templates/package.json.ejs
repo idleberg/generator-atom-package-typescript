@@ -27,7 +27,8 @@
       "atom-workspace": [
         "<%= pkg.name %>:hello-world"
       ]
-    },<% } %>
+    },<% } %><% if (pkg.atomDependencies) { %>
+    "package-deps": <%- JSON.stringify(pkg.atomDependencies) %>,<% } %>
     "dependencies": {},
     "devDependencies": {}
 }
