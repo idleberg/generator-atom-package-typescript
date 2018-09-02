@@ -14,7 +14,7 @@ const updateNotifier = require('update-notifier');
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
 const licenseChoices = spdxCodes.map(obj =>{
    const licenses = {};
-   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`);
+   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, { fallback: obj });
    licenses['value'] = obj;
 
    return licenses;
@@ -194,12 +194,12 @@ module.exports = class extends Generator {
         store: true,
         choices: [
           {
-            name: terminalLink('Circle CI', 'https://circleci.com/'),
+            name: terminalLink('Circle CI', 'https://circleci.com/', { fallback: 'Circle CI' }),
             value: 'circleCI',
             checked: false
           },
           {
-            name: terminalLink('Travis CI', 'https://travis-ci.org/'),
+            name: terminalLink('Travis CI', 'https://travis-ci.org/', { fallback: 'Travis CI' }),
             value: 'travisCI',
             checked: false
           }
