@@ -12,13 +12,17 @@ const updateNotifier = require('update-notifier');
 
 // Create array of license choices
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
-const licenseChoices = spdxCodes.map(obj =>{
-   const licenses = {};
-   licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, { fallback: obj });
-   licenses['value'] = obj;
+const licenseChoices = spdxCodes.map(obj => {
+  const licenses = {};
+  licenses['name'] = terminalLink(obj, `https://spdx.org/licenses/${obj}.html`, {
+    fallback() {
+      return obj;
+    }
+  });
+  licenses['value'] = obj;
 
-   return licenses;
-})
+  return licenses;
+});
 
 // Is there a newer version of this generator?
 updateNotifier({ pkg: meta }).notify();
@@ -194,12 +198,20 @@ module.exports = class extends Generator {
         store: true,
         choices: [
           {
-            name: terminalLink('Circle CI', 'https://circleci.com/', { fallback: 'Circle CI' }),
+            name: terminalLink('Circle CI', 'https://circleci.com/', {
+              fallback() {
+                return 'Circle CI';
+              }
+            }),
             value: 'circleCI',
             checked: false
           },
           {
-            name: terminalLink('Travis CI', 'https://travis-ci.org/', { fallback: 'Travis CI' }),
+            name: terminalLink('Travis CI', 'https://travis-ci.org/', {
+              fallback() {
+                return 'Travis CI';
+              }
+            }),
             value: 'travisCI',
             checked: false
           }
