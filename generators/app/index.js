@@ -222,7 +222,17 @@ module.exports = class extends Generator {
         name: 'initGit',
         message: 'Initialize Git repository?',
         default: fs.existsSync('.git/') ? false : true
-      }
+      },
+      {
+        name: 'openInEditor',
+        message: 'Open in editor?',
+        type: 'confirm',
+        default: 'true',
+        store: true,
+        when: () => {
+          return (process.env.EDITOR) ? true : false;
+        }
+      },
     ]).then(props => {
 
       props.licenseURL = spdxLicenseList[props.license].url;
@@ -369,6 +379,11 @@ module.exports = class extends Generator {
       // Initialize git repository
       if (props.initGit) {
         this.spawnCommandSync('git', ['init']);
+      }
+
+      // Open in Editor
+      if (props.openInEditor === true) {
+        this.spawnCommand(process.env.EDITOR, [ '.' ]);
       }
     });
   }
