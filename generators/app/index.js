@@ -2,13 +2,13 @@ const Generator = require('yeoman-generator');
 const meta = require('../../package.json');
 
 const axios = require('axios');
-const fs = require('fs');
 const gitUserName = require('git-user-name');
 const mkdirp = require('mkdirp');
 const slugify = require('@sindresorhus/slugify');
 const spdxLicenseList = require('spdx-license-list/full');
 const terminalLink = require('terminal-link');
 const updateNotifier = require('update-notifier');
+const { join } = require('path');
 
 // Create array of license choices
 const spdxCodes = Object.getOwnPropertyNames(spdxLicenseList).sort();
@@ -49,7 +49,7 @@ module.exports = class extends Generator {
         validate: (str) => {
           if (str.startsWith('atom-') && this.allowAtomPrefix === false) {
             return 'Your package name shouldn\'t be prefixed with "atom-"';
-          } else if (str.length > 241) {
+          } else if (str.length > 214) {
             return 'The name must be less than or equal to 214 characters';
           }
 
@@ -221,7 +221,7 @@ module.exports = class extends Generator {
         type: 'confirm',
         name: 'initGit',
         message: 'Initialize Git repository?',
-        default: fs.existsSync('.git/') ? false : true
+        default: this.fs.exists(join(process.cwd(), '.git', 'config')) ? false : true
       },
       {
         name: 'openInEditor',
