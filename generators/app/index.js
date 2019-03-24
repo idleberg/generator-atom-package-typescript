@@ -7,6 +7,7 @@ const slugify = require('@sindresorhus/slugify');
 const spdxLicenseList = require('spdx-license-list/full');
 const terminalLink = require('terminal-link');
 const updateNotifier = require('update-notifier');
+const yosay = require('yosay');
 const { join } = require('path');
 
 // Create array of license choices
