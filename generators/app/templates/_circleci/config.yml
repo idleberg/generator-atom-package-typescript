@@ -20,7 +20,6 @@ jobs:
       - run:
           name: Linting Source
           command: npm run lint
-            - ./node_modules
       - run:
           name: Running Tests
           command: npm run test
