@@ -91,10 +91,10 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
-"@sindresorhus/slugify@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@sindresorhus/slugify/-/slugify-0.9.0.tgz#58a85bea6c93a4634b143eafd0a78c41a5eaa7da"
-  integrity sha512-i7ksJMW9dFzE12Ucb86pPc4hSJDscL3CdxfI2kkCKdtshKik3LR41M2TOvh9Qi8xGVSTZ8C5bxCV1F8/j0xkag==
+"@sindresorhus/slugify@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@sindresorhus/slugify/-/slugify-0.9.1.tgz#892ad24d70b442c0a14fe519cb4019d59bc5069f"
+  integrity sha512-b6heYM9dzZD13t2GOiEQTDE0qX+I1GyOotMwKh9VQqzuNiVdPVT8dM43fe9HNb/3ul+Qwd5oKSEDrDIfhq3bnQ==
   dependencies:
     escape-string-regexp "^1.0.5"
     lodash.deburr "^4.1.0"
@@ -143,7 +143,7 @@ ansi-align@^2.0.0:
   dependencies:
     string-width "^2.0.0"
 
-ansi-escapes@^3.0.0, ansi-escapes@^3.1.0:
+ansi-escapes@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.1.0.tgz#f73207bb81207d75fd6c83f125af26eea378ca30"
 
@@ -400,9 +400,10 @@ chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-change-case@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/change-case/-/change-case-3.0.2.tgz#fd48746cce02f03f0a672577d1d3a8dc2eceb037"
+change-case@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/change-case/-/change-case-3.1.0.tgz#0e611b7edc9952df2e8513b27b42de72647dd17e"
+  integrity sha512-2AZp7uJZbYEzRPsFoa+ijKdvp9zsrnnt6+yFokfwEpeJm0xuJDVoxiRCAaTzyJND8GJkofo2IcKWaUZ/OECVzw==
   dependencies:
     camel-case "^3.0.0"
     constant-case "^2.0.0"
@@ -2586,9 +2587,10 @@ spdx-license-ids@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.0.tgz#7a7cd28470cc6d3a1cfe6d66886f6bc430d3ac87"
 
-spdx-license-list@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/spdx-license-list/-/spdx-license-list-5.0.0.tgz#d100186631ec16774094632c22a7a693c39df903"
+spdx-license-list@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/spdx-license-list/-/spdx-license-list-6.0.0.tgz#1c86d4a083de8d3942f70c0424793a5976941282"
+  integrity sha512-TIwgF7P7bE3MLnE5Oh1zgMNu6W0An1ASf8uoe3P3ZA3sVf4nJ9m9XDzudKYrmWVZ4TR0i/7tWfaH2AWPtc46Ag==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
@@ -2757,12 +2759,12 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
-terminal-link@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/terminal-link/-/terminal-link-1.2.0.tgz#ed1ac495da75a8c3eadc8a5db985226e451edffd"
-  integrity sha512-nkM6NjuohxfZGA/jkAnM1zl2qjhdm8vZTG0Q36t+5O6msGwZ/ieJW+XxbIlLpUBQEUeGswg4XiB/QhcEVI23Rg==
+terminal-link@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/terminal-link/-/terminal-link-1.3.0.tgz#3e9a308289e13340053aaf40e8f1a06d1335646e"
+  integrity sha512-nFaWG/gs3brGi3opgWU2+dyFGbQ7tueSRYOBOD8URdDXCbAGqDEZzuskCc+okCClYcJFDPwn8e2mbv4FqAnWFA==
   dependencies:
-    ansi-escapes "^3.1.0"
+    ansi-escapes "^3.2.0"
     supports-hyperlinks "^1.0.1"
 
 text-table@^0.2.0:
