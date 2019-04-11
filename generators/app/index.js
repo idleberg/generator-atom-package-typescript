@@ -200,20 +200,16 @@ module.exports = class extends Generator {
         type: 'list',
         name: 'linterHook',
         message: 'Linter Hook',
-        default: 'precommit',
+        default: 'pre-commit',
         store: true,
         choices: [
           {
-            name: 'precommit',
-            value: 'precommit',
+            name: 'pre-commit',
+            value: 'pre-commit',
           },
           {
-            name: 'prepush',
-            value: 'prepush',
-          },
-          {
-            name: 'prepublishOnly',
-            value: 'prepublishOnly',
+            name: 'pre-push',
+            value: 'pre-push',
           }
         ]
       },
@@ -330,17 +326,6 @@ module.exports = class extends Generator {
           licenseText: props.licenseText
         }
       );
-
-      if (props.buildScript === props.linterHook) {
-        props.scripts = [
-          '"prepublishOnly": "npm run lint && npm run build"'
-        ];
-      } else {
-        props.scripts = [
-          `"${props.buildScript}": "npm run build"`,
-          `"${props.linterHook}": "npm run lint"`
-        ];
-      }
 
       this.fs.copyTpl(
         this.templatePath('package.json.ejs'),

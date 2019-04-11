@@ -6,8 +6,8 @@
     "scripts": {
         "build": "tsc --pretty --project ./",
         "dev": "tsc --watch --pretty --project ./",
-        "lint": "tslint --project ./",<% pkg.scripts.forEach( script => {  %>
-        <%- script %>,<% }) %>
+        "lint": "tslint --project ./",
+        "<%= pkg.buildScript %>": "npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
@@ -31,5 +31,10 @@
     },<% } %><% if (pkg.atomDependencies) { %>
     "package-deps": <%- JSON.stringify(pkg.atomDependencies) %>,<% } %>
     "dependencies": {},
-    "devDependencies": {}
+    "devDependencies": {},
+    "husky": {
+      "hooks": {
+        "<%= pkg.linterHook %>": "npm run lint"
+      }
+    }
 }
