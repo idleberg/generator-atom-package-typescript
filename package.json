@@ -1,6 +1,6 @@
 {
   "name": "generator-atom-package-typescript",
-  "version": "0.11.4",
+  "version": "0.12.0",
   "description": "Generator for Atom packages written in TypeScript",
   "files": [
     "generators"
