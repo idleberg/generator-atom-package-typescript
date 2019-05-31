@@ -246,9 +246,16 @@ module.exports = class extends Generator {
         default: this.fs.exists(join(process.cwd(), '.git', 'config')) ? false : true
       },
       {
+        type: 'confirm',
+        name: 'linkDevPackage',
+        message: 'Link as developer package?',
+        default: 'true',
+        store: true
+      },
+      {
+        type: 'confirm',
         name: 'openInEditor',
         message: 'Open in default editor?',
-        type: 'confirm',
         default: 'true',
         store: true,
         when: () => {
@@ -390,6 +397,11 @@ module.exports = class extends Generator {
       // Initialize git repository
       if (props.initGit) {
         this.spawnCommandSync('git', ['init']);
+      }
+
+      // Link to ~/.atom/dev/packages
+      if (props.linkDevPackage === true) {
+        this.spawnCommand('apm', ['link', '--dev']);
       }
 
       // Open in Editor
