@@ -8,10 +8,10 @@ const path = require('path');
 const config = {
   target: 'node',
 
-  entry: './src/<%= name %>.ts',
+  entry: './src/<%= pkg.name %>.ts',
   output: {
     path: path.resolve(__dirname, 'lib'),
-    filename: '<%= name %>.js',
+    filename: '<%= pkg.name %>.js',
     libraryTarget: 'commonjs2',
     devtoolModuleFilenameTemplate: '../[resource-path]'
   },

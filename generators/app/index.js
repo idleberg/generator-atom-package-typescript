@@ -372,11 +372,11 @@ module.exports = class extends Generator {
       props.scriptDev = (props.buildWithWebpack) ? 'webpack --mode none --watch' : 'tsc --watch --pretty --project ./';
 
       if (props.buildWithWebpack) {
-        this.fs.copy(
+        this.fs.copyTpl(
           this.templatePath('webpack.config.js.ejs'),
           this.destinationPath(`webpack.config.js`),
           {
-            name: props.name
+            pkg: props
           }
         );
       }
