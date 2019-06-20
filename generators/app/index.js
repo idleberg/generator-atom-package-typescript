@@ -409,9 +409,12 @@ module.exports = class extends Generator {
         this.destinationPath('.editorconfig')
       );
 
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_gitignore'),
-        this.destinationPath('.gitignore')
+        this.destinationPath('.gitignore'),
+        {
+          pkg: props
+        }
       );
 
       this.fs.copy(

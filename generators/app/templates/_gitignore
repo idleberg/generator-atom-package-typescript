@@ -10,5 +10,7 @@ yarn-error.log
 # TypeScript
 tsconfig.tsbuildinfo
 
+<% if (pkg.buildScript === 'postinstall') { %>
 # Compiled Source
 lib/
+<% } %>
