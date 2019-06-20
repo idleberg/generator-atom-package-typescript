@@ -1,0 +1,40 @@
+//@ts-check
+
+'use strict';
+
+const path = require('path');
+
+/**@type {import('webpack').Configu ration}*/
+const config = {
+  target: 'node',
+
+  entry: './src/<%= pkg.name %>.ts',
+  output: {
+    path: path.resolve(__dirname, 'lib'),
+    filename: '<%= pkg.name %>.js',
+    libraryTarget: 'commonjs2',
+    devtoolModuleFilenameTemplate: '../[resource-path]'
+  },
+  devtool: 'source-map',
+  externals: {
+    atom: 'atom',
+    electron: 'electron'
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader'
+          }
+        ]
+      }
+    ]
+  }
+};
+module.exports = config;

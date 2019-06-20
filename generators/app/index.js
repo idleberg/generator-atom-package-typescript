@@ -56,10 +56,19 @@ module.exports = class extends Generator {
         type: Boolean
       }
     );
+    this.option(
+      'debug',
+      {
+        desc: `Displays debug information`,
+        default: false,
+        type: Boolean
+      }
+    );
 
     this.allowAtomPrefix = (this.options.allowAtomPrefix ? true : false);
     this.allowEmptyDescription = (this.options.allowEmptyDescription ? true : false);
     this.clear = (this.options.clear ? true : false);
+    this.debug = (this.options.debug ? true : false);
   }
 
   inquirer() {
@@ -94,7 +103,17 @@ module.exports = class extends Generator {
       {
         name: 'author',
         message: 'What\'s your GitHub username?',
-        default: async () => await this.user.github.username(),
+        default: async () => {
+          let username;
+
+          try {
+            username = await this.user.github.username();
+          } catch (error) {
+            username = '';
+          }
+
+          return username;
+        },
         store: true,
         validate: x => x.length > 0 ? true : 'You have to provide a username',
         when: () => !this.options.org
@@ -180,6 +199,13 @@ module.exports = class extends Generator {
         }
       },
       {
+        type: 'confirm',
+        name: 'buildWithWebpack',
+        message: 'Build with Webpack',
+        default: true,
+        store: true
+      },
+      {
         type: 'list',
         name: 'buildScript',
         message: 'Build Script',
@@ -216,7 +242,7 @@ module.exports = class extends Generator {
       {
         type: 'checkbox',
         name: 'addConfig',
-        message: 'Add configuration',
+        message: 'Add CI configuration',
         store: true,
         choices: [
           {
@@ -263,6 +289,7 @@ module.exports = class extends Generator {
         }
       },
     ]).then(props => {
+      if (this.debug) console.log(props);
 
       props.licenseURL = spdxLicenseList[props.license].url;
       props.licenseName = spdxLicenseList[props.license].name;
@@ -317,6 +344,13 @@ module.exports = class extends Generator {
           pkg: props
         }
       );
+      this.fs.copyTpl(
+        this.templatePath('src/config.ts.ejs'),
+        this.destinationPath(`src/config.ts`),
+        {
+          pkg: props
+        }
+      );
 
      this.fs.copyTpl(
         this.templatePath('README.md.ejs'),
@@ -333,6 +367,21 @@ module.exports = class extends Generator {
           licenseText: props.licenseText
         }
       );
+
+      props.scriptBuild = (props.buildWithWebpack) ? 'webpack --mode none' : 'tsc --pretty --project ./';
+      props.scriptDev = (props.buildWithWebpack) ? 'webpack --mode none --watch' : 'tsc --watch --pretty --project ./';
+
+      if (props.buildWithWebpack) {
+        this.fs.copy(
+          this.templatePath('webpack.config.js.ejs'),
+          this.destinationPath(`webpack.config.js`),
+          {
+            pkg: props
+          }
+        );
+
+        devDependencies.push('ts-loader','webpack', 'webpack-cli');
+      }
 
       this.fs.copyTpl(
         this.templatePath('package.json.ejs'),
