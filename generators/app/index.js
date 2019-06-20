@@ -379,8 +379,6 @@ module.exports = class extends Generator {
             pkg: props
           }
         );
-
-        devDependencies.push('ts-loader','webpack', 'webpack-cli');
       }
 
       this.fs.copyTpl(
@@ -429,6 +427,11 @@ module.exports = class extends Generator {
       // Install latest versions of dependencies
       const dependencies = ['@types/atom', '@types/node', 'typescript'];
       let devDependencies =['tslint', 'husky'];
+
+
+      if (props.buildWithWebpack) {
+        devDependencies.push('ts-loader','webpack', 'webpack-cli');
+      }
 
       if (props.buildScript === 'prepublishOnly') {
         devDependencies = devDependencies.concat(dependencies)
