@@ -376,7 +376,7 @@ module.exports = class extends Generator {
           this.templatePath('webpack.config.js.ejs'),
           this.destinationPath(`webpack.config.js`),
           {
-            pkg: props
+            name: props.name
           }
         );
       }
