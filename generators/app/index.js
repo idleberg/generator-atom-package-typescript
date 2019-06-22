@@ -344,9 +344,18 @@ module.exports = class extends Generator {
           pkg: props
         }
       );
+
       this.fs.copyTpl(
         this.templatePath('src/config.ts.ejs'),
         this.destinationPath(`src/config.ts`),
+        {
+          pkg: props
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/hello-world.ts.ejs'),
+        this.destinationPath(`src/hello-world.ts`),
         {
           pkg: props
         }
