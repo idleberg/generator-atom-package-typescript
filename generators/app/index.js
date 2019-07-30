@@ -377,7 +377,7 @@ module.exports = class extends Generator {
         }
       );
 
-      props.scriptBuild = (props.buildWithWebpack) ? 'webpack --mode none' : 'tsc --pretty --project ./';
+      props.scriptBuild = (props.buildWithWebpack) ? 'webpack --mode production' : 'tsc --pretty --project ./';
       props.scriptDev = (props.buildWithWebpack) ? 'webpack --mode none --watch' : 'tsc --watch --pretty --project ./';
 
       if (props.buildWithWebpack) {
