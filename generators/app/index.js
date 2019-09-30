@@ -270,6 +270,7 @@ module.exports = class extends Generator {
         name: 'stylelintConfig',
         message: 'Stylelint Configuration',
         store: true,
+        when: answers => answers.features.includes('styles'),
         choices: [
           {
             name: terminalLink('Airbnb', 'https://www.npmjs.com/package/stylelint-config-airbnb', {
@@ -375,6 +376,7 @@ module.exports = class extends Generator {
       props.licenseName = spdxLicenseList[props.license].name;
       props.licenseText = spdxLicenseList[props.license].licenseText.replace(/\n{3,}/g, '\n\n');
       props.repositoryName = (props.name.startsWith('atom-')) ? props.name : `atom-${props.name}`;
+      props.lintScript = (props.features.includes('styles')) ? "npm run lint:ts && npm run lint:styles" : "npm run lint:ts";
 
       if (typeof props.atomDependencies !== 'undefined') {
         props.atomDependencies = props.atomDependencies.split(',');
@@ -386,7 +388,7 @@ module.exports = class extends Generator {
         mkdirp(feature);
       });
 
-      if (props.features.indexOf('keymaps') !== -1) {
+      if (props.features.includes('keymaps')) {
         this.fs.copyTpl(
           this.templatePath('keymaps/keymap.json.ejs'),
           this.destinationPath(`keymaps/${props.name}.json`),
@@ -396,7 +398,7 @@ module.exports = class extends Generator {
         );
       }
 
-      if (props.features.indexOf('menus') !== -1) {
+      if (props.features.includes('menus')) {
         this.fs.copyTpl(
           this.templatePath('menus/menu.json.ejs'),
           this.destinationPath(`menus/${props.name}.json`),
@@ -406,7 +408,7 @@ module.exports = class extends Generator {
         );
       }
 
-      if (props.features.indexOf('styles') !== -1) {
+      if (props.features.includes('styles')) {
         this.fs.copyTpl(
           this.templatePath('styles/style.less.ejs'),
           this.destinationPath(`styles/${props.name}.less`),
@@ -478,7 +480,7 @@ module.exports = class extends Generator {
         }
       );
 
-      if (props.addConfig.indexOf('circleCI') !== -1) {
+      if (props.addConfig.includes('circleCI')) {
         mkdirp('.circleci');
         this.fs.copyTpl(
           this.templatePath('_circleci/config.yml'),
@@ -486,7 +488,7 @@ module.exports = class extends Generator {
         );
       }
 
-      if (props.addConfig.indexOf('travisCI') !== -1) {
+      if (props.addConfig.includes('travisCI')) {
         this.fs.copy(
           this.templatePath('_travis.yml'),
           this.destinationPath('.travis.yml')
@@ -506,13 +508,15 @@ module.exports = class extends Generator {
         }
       );
 
-      this.fs.copyTpl(
-        this.templatePath('_stylelintrc.ejs'),
-        this.destinationPath(`.stylelintrc`),
-        {
-          pkg: props
-        }
-      );
+      if (props.features.includes('styles')) {
+        this.fs.copyTpl(
+          this.templatePath('_stylelintrc.ejs'),
+          this.destinationPath(`.stylelintrc`),
+          {
+            pkg: props
+          }
+        );
+      }
 
       this.fs.copy(
         this.templatePath('tsconfig.json'),
