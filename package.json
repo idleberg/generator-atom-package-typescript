@@ -6,9 +6,10 @@
     "generators"
   ],
   "scripts": {
-    "ejslint": "ejslint generators/**/*.ejs",
-    "eslint": "eslint generators/**/*.js",
-    "test": "npm run eslint && npm run ejslint"
+    "lint:ejs": "ejslint generators/**/*.ejs",
+    "lint:js": "eslint generators/**/*.js",
+    "lint": "npm run lint:js && npm run lint:ejs",
+    "test": "npm run lint"
   },
   "keywords": [
     "yeoman-generator",
