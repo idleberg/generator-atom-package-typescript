@@ -6,7 +6,9 @@
     "scripts": {
         "build": "<%= pkg.scriptBuild %>",
         "dev": "<%= pkg.scriptDev %>",
-        "lint": "tslint --project ./",
+        "lint:ts": "tslint --project ./",
+        "lint:styles": "stylelint styles/*.{css,less}",
+        "lint": "npm run lint:ts && src/*.js",
         "<%= pkg.buildScript %>": "npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
