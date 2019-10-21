@@ -8,7 +8,7 @@
   "scripts": {
     "lint:ejs": "ejslint generators/**/*.ejs",
     "lint:js": "eslint generators/**/*.js",
-    "lint": "npm run lint:js && npm run lint:ejs",
+    "lint": "concurrently 'npm run lint:js' 'npm run lint:ejs'",
     "test": "npm run lint"
   },
   "keywords": [
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
+    "concurrently": "^5.0.0",
     "ejs-lint": "^0.3.0",
     "eslint": "^6.5.0",
     "husky": "^3.0.7"

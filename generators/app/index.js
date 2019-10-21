@@ -530,7 +530,7 @@ module.exports = class extends Generator {
 
       // Install latest versions of dependencies
       const dependencies = ['@types/atom', '@types/node', 'typescript'];
-      let devDependencies =['tslint', 'husky', 'stylelint', `stylelint-config-${props.stylelintConfig}`];
+      let devDependencies =['concurrently', 'tslint', 'husky', 'stylelint', `stylelint-config-${props.stylelintConfig}`];
 
 
       if (props.buildWithWebpack) {
