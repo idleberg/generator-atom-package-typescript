@@ -27,7 +27,15 @@ npm i generator-atom-package-typescript -g
 
 ## Usage
 
-Run the generator and follow its instructions. Use `--help`to list available flags.
+Create a new directory for your package and change into it:
+
+```sh
+cd ~/.atom/packages
+mkdir my-package
+cd my-package
+```
+
+Next, run the generator and follow its instructions. Use `--help`to list available flags.
 
 ```sh
 yo atom-package-typescript
