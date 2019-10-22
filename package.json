@@ -8,7 +8,7 @@
   "scripts": {
     "lint:ejs": "ejslint generators/**/*.ejs",
     "lint:js": "eslint generators/**/*.js",
-    "lint": "concurrently 'npm run lint:js' 'npm run lint:ejs'",
+    "lint": "concurrently 'npm run lint:*'",
     "test": "npm run lint"
   },
   "keywords": [

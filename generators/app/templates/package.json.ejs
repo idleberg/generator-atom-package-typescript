@@ -8,7 +8,7 @@
         "dev": "<%= pkg.scriptDev %>",
         "lint:ts": "tslint --project ./",<% if (pkg.stylelintConfig) { %>
         "lint:styles": "stylelint styles/*.{css,less}",<% } %>
-        "lint": "concurrently 'npm run lint:ts' 'npm run lint:styles'",
+        "lint": "concurrently 'npm run lint:*'",
         "<%= pkg.buildScript %>": "npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
