@@ -161,9 +161,74 @@ module.exports = class extends Generator {
       },
       {
         type: 'confirm',
-        name: 'activationCmd',
+        name: 'activationCommands',
         message: 'Add activation command?',
         default: true
+      },
+      {
+        type: 'checkbox',
+        name: 'activationHooks',
+        message: 'Add activation hooks?',
+        store: true,
+        choices: [
+          {
+            name: 'Loaded Shell Environment',
+            value: 'core:loaded-shell-environment',
+            checked: false
+          },
+          {
+            name: 'Root Scope Used',
+            value: 'root-scope-used',
+            checked: false
+          },
+          {
+            name: 'Grammar Used',
+            value: 'grammar-used',
+            checked: false
+          }
+        ]
+      },
+      {
+        name: 'rootScopeUsed',
+        message: 'Activation Hooks: Specify root scope used',
+        store: true,
+        when: answers => answers.activationHooks.includes('root-scope-used'),
+        validate: str => str.endsWith(':root-scope-used') && str.length > ':root-scope-used'.length ? true : 'You need to specify a valid root scope'
+      },
+      {
+        name: 'grammarUsed',
+        message: 'Activation Hooks: Specify grammar used',
+        store: true,
+        when: answers => answers.activationHooks.includes('grammar-used'),
+        validate: str => str.startsWith('language-') && str.length > 'language-'.length ? true : 'You need to specify a valid language package'
+      },
+      {
+        type: 'confirm',
+        name: 'workspaceOpeners',
+        message: 'Add workspace openers?',
+        store: true,
+        default: false,
+      },
+      {
+        name: 'workspaceOpenerURIs',
+        message: 'Workspace Openers: Specify workspace URIs (comma-separated)',
+        store: true,
+        when: answers => answers.workspaceOpeners,
+        validate: str => {
+          if (str.trim().length === 0) {
+            return 'You need to specify at least one URI';
+          }
+
+          const workspaceOpeners = str.split(',') || [str];
+
+          workspaceOpeners.forEach(workspaceOpener => {
+            if (!workspaceOpener.startsWith('atom://')) {
+              throw 'You need to specify a valid workspace URI, prefixed with atom://';
+            }
+          });
+
+          return true;
+        }
       },
       {
         type: 'confirm',
@@ -176,7 +241,7 @@ module.exports = class extends Generator {
         name: 'atomDependencies',
         message: 'Specify Atom packages (comma-separated)',
         store: true,
-        when: answers => (answers.atomDependenciesQuestion) ? true : false,
+        when: answers => answers.atomDependenciesQuestion ? true : false,
         validate: async str => {
           if (str.trim().length === 0) {
             return 'You need to specify at least one package';

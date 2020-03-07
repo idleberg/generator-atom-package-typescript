@@ -25,12 +25,14 @@
     "license": "<%= pkg.license %>",
     "engines": {
       "atom": ">=1.0.0 <2.0.0"
-    },<% if (pkg.activationCmd) { %>
+    },
     "activationCommands": {
       "atom-workspace": [
-        "<%= pkg.name %>:hello-world"
+        <% if (pkg.activationCommands) { %>"<%= pkg.name %>:hello-world"<% } %>
       ]
-    },<% } %><% if (pkg.atomDependencies) { %>
+    },
+    "activationHooks": <%- JSON.stringify(pkg.activationHooks) %>,<% if (pkg.workspaceOpenerURIs) { %>
+    "workspaceOpeners": <%- JSON.stringify(pkg.workspaceOpenerURIs.split(',')) %>,<% } %><% if (pkg.atomDependencies) { %>
     "package-deps": <%- JSON.stringify(pkg.atomDependencies) %>,<% } %>
     "dependencies": {},
     "devDependencies": {},
