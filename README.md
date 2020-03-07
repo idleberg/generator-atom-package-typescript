@@ -14,7 +14,7 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for Atom
 - adds any [SPDX](https://spdx.org/licenses/) license
 - adds [CircleCI](https://circleci.com) configuration
 - adds [Travis CI](https://travis-ci.org/) configuration
-- adds [TypeScript ESLint](https://github.com/typescript-eslint/typescript-eslint) configuration
+- adds [ESLint](https://github.com/typescript-eslint/typescript-eslint) configuration
 - adds [stylelint](https://stylelint.io/) configuration
 - adds [Atom package dependencies](https://www.npmjs.com/package/atom-package-deps)
 
