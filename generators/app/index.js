@@ -68,7 +68,7 @@ module.exports = class extends Generator {
     this.allowAtomPrefix = (this.options.allowAtomPrefix ? true : false);
     this.allowEmptyDescription = (this.options.allowEmptyDescription ? true : false);
     this.clear = (this.options.clear ? true : false);
-    // this.debug = (this.options.debug ? true : false);
+    this.debugMode = (this.options.debug ? true : false);
   }
 
   inquirer() {
@@ -436,7 +436,7 @@ module.exports = class extends Generator {
         }
       },
     ]).then(props => {
-      // if (this.debug) console.log(props);
+      if (this.debugMode) console.log(props);
 
       props.licenseURL = spdxLicenseList[props.license].url;
       props.licenseName = spdxLicenseList[props.license].name;
