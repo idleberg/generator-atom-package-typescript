@@ -6,7 +6,7 @@
     "scripts": {
         "build": "<%= pkg.scriptBuild %>",
         "dev": "<%= pkg.scriptDev %>",
-        "lint:ts": "tslint --project ./",<% if (pkg.stylelintConfig) { %>
+        "lint:ts": "eslint ./src/**/*.ts",<% if (pkg.stylelintConfig) { %>
         "lint:styles": "stylelint styles/*.{css,less}",<% } %>
         "lint": "concurrently 'npm run lint:*'",
         "<%= pkg.buildScript %>": "npm run build",

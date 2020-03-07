@@ -68,7 +68,7 @@ module.exports = class extends Generator {
     this.allowAtomPrefix = (this.options.allowAtomPrefix ? true : false);
     this.allowEmptyDescription = (this.options.allowEmptyDescription ? true : false);
     this.clear = (this.options.clear ? true : false);
-    this.debug = (this.options.debug ? true : false);
+    // this.debug = (this.options.debug ? true : false);
   }
 
   inquirer() {
@@ -436,7 +436,7 @@ module.exports = class extends Generator {
         }
       },
     ]).then(props => {
-      if (this.debug) console.log(props);
+      // if (this.debug) console.log(props);
 
       props.licenseURL = spdxLicenseList[props.license].url;
       props.licenseName = spdxLicenseList[props.license].name;
@@ -590,13 +590,21 @@ module.exports = class extends Generator {
       );
 
       this.fs.copy(
-        this.templatePath('tslint.json'),
-        this.destinationPath(`tslint.json`)
+        this.templatePath('.eslintrc'),
+        this.destinationPath(`.eslintrc`)
       );
 
       // Install latest versions of dependencies
       const dependencies = ['@types/atom', '@types/node', 'typescript'];
-      let devDependencies =['concurrently', 'tslint', 'husky'];
+      let devDependencies =[
+        '@typescript-eslint/eslint-plugin',
+        '@typescript-eslint/eslint-plugin-tslint',
+        '@typescript-eslint/parser',
+        'concurrently',
+        'eslint',
+        'husky',
+        'tslint'
+      ];
 
       if (props.features.includes('styles')) {
         devDependencies.push(
