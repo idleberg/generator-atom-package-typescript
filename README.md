@@ -18,6 +18,14 @@ A [Yeoman](http://yeoman.io/authoring/user-interactions.html) generator for Atom
 - adds [stylelint](https://stylelint.io/) configuration
 - adds [Atom package dependencies](https://www.npmjs.com/package/atom-package-deps)
 
+## Prerequisites
+
+You need [Node.js](https://nodejs.org/en/) installed and available in your `PATH` [environmental variable](http://superuser.com/a/284351/195953). Use your preferred Node package manager to install the Yeoman CLI tool.
+
+```sh
+npm install -g yo
+```
+
 ## Installation
 
 Use your preferred [Node](https://nodejs.org/) package manager to install the CLI tool
